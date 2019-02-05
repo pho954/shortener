@@ -1,0 +1,14 @@
+{
+  "name": "traction",
+  "version": "1.0.0",
+  "description": "Shortener",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "formidable": "^1.2.1"
+  }
+}
