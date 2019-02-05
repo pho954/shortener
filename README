@@ -2,6 +2,9 @@ URL Shortener:
 
 This application is written primarily in nodejs.  It uses npm as its package manager.  I didn't use a database because I wanted it to be simplistic and easier to use by having less dependencies.  The datasource for this app is a JSON file, records.json.  I chose a JSON file as the datasource because it's easy to read/write.  I am aware that having a JSON is in no way a good way to scale, but this is a simple implementation.  If I were to use a DB, I'd use Mysql and the knex library that's easily installable through npm.
 
+Assumptions:
+1) I assumed the users will enter the protocols when entering the URL.  This makes it easier to do redirects without having to check the validity of the URl.
+
 Install:
 1) Run "npm install" in the parent directory (where index.js is)
 
