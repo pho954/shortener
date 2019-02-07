@@ -13,3 +13,9 @@ Run:
 2) Open a browser to "http://localhost:9000"
 3) Enter in URLs with the protocol http/https
 4) Go to Short Urls generated to be redirected, i.e. http://localhost:9000/1
+
+Unit Test:
+
+I built my own test.js script to run the "miscellaneous" functions.  It output pass/failed tests for each function within the misc.js module.
+
+1) Run "node tests/test.js"

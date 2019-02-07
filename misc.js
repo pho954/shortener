@@ -1,34 +1,45 @@
 const fs = require('fs');
 
+//Miscellaneous functions to process urls and read/write from/to the datasource
 exports.functions = {
+	//Checks if the URL exists.  If it does, it'll return the assigned value.  If not, it'll create a new one and return it.
 	shorten: (big_url, records) => {
 		return new Promise((resolve, reject) => {
-			if (big_url in records) {
+			if (big_url == "")
+				resolve("");
+			if (big_url in records)
+				resolve(records[big_url]);
+			else {
+				records[big_url] = Object.keys(records).length + 1;
 				resolve(records[big_url]);
 			}
-
-			records[big_url] = Object.keys(records).length + 1;
-			resolve(records[big_url]);
 		});
 	},
-	read_file: () => {
+	//Reads the records.json data as a string
+	read_file: (path) => {
 		return new Promise((resolve, reject) => {
-			fs.readFile('records.json', function(error, data) {
+			fs.readFile(path, function(error, data) {
+				if(error) {
+			        //console.log(error);
+			        resolve(0);
+			    }
 				resolve(data);
 			});
 		});
 	},
-	write_file: (data) => {
+	//Inserts a new record into records.json
+	write_file: (path, data) => {
 		return new Promise((resolve, reject) => {
-			fs.writeFile('records.json', data, function(error) {
+			fs.writeFile(path, data, function(error) {
 			    if(error) {
-			        return console.log(error);
+			        //console.log(error);
+			        resolve(0);
 			    }
-			    console.log("Records were saved!");
 			    resolve(1);
 			});
 		});
 	},
+	//Searches for the URL based on the value to find the shorten URL to redirect to
 	find_url: (value, records) => {
 		return new Promise((resolve, reject) => {
 			for (key in records) {
@@ -36,7 +47,7 @@ exports.functions = {
 					resolve(key);
 				}
 			}
-			resolve(1);
+			resolve(0);
 		});
 	}
 }
